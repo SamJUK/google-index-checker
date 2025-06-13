@@ -62,10 +62,11 @@ jobs:
         with:
           name: google-index-checker-${{ env.OS }}-${{ env.ARCH }}
           path: bin/google-index-checker
-      - name: Add PR Comment
-        uses: mshick/add-pr-comment@v2
-        if: github.event_name == 'pull_request'
-        with:
-          message: |
-            The binary has been built successfully. You can download it from the artifacts section of this workflow run.
-            [Download Binary](${{ steps.upload-binary.outputs.artifact_url }})
+
+      # - name: Add PR Comment
+      #   uses: mshick/add-pr-comment@v2
+      #   if: github.event_name == 'pull_request'
+      #   with:
+      #     message: |
+      #       The binary has been built successfully. You can download it from the artifacts section of this workflow run.
+      #       [Download Binary](${{ steps.upload-binary.outputs.artifact_url }})

@@ -1,0 +1,71 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test-lint:
+    name: Linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v8
+        with:
+          version: v2.1
+
+  test-unit:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Run Unit Tests
+        run: go test -v ./...
+
+  build:
+    needs: [ test-lint, test-unit ]
+    strategy:
+      matrix:
+        target:
+          - { os: darwin, arch: arm64 }
+          - { os: darwin, arch: amd64 }
+          - { os: linux, arch: amd64 }
+          - { os: windows, arch: amd64 }
+    runs-on: ubuntu-latest
+    env:
+      OS: ${{ matrix.target.os }}
+      ARCH: ${{ matrix.target.arch }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - name: Install dependencies
+        run: go mod download
+      - name: Build Binary
+        run: CGO_ENABLED=0 GOOS=$OS GOARCH=$ARCH go build -o bin/google-index-checker -v src/main.go
+      - name: Upload Binary
+        id: upload-binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: google-index-checker-${{ env.OS }}-${{ env.ARCH }}
+          path: bin/google-index-checker
+      - name: Add PR Comment
+        uses: mshick/add-pr-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          message: |
+            The binary has been built successfully. You can download it from the artifacts section of this workflow run.
+            [Download Binary](${{ steps.upload-binary.outputs.artifact_url }})

@@ -54,16 +54,16 @@ jobs:
           registry_username: ${{ github.repository_owner }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Publish to Docker Hub
-      #   uses: ./.github/actions/publish
-      #   with:
-      #     image: google-index-checker
-      #     tags: |
-      #       samjuk/google-index-checker:latest
-      #       samjuk/google-index-checker:${{ github.ref_name }}
-      #     registry: docker.io
-      #     registry_username: ${{ secrets.DOCKER_USERNAME }}
-      #     registry_password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish to Docker Hub
+        uses: ./.github/actions/publish
+        with:
+          image: google-index-checker
+          tags: |
+            samjuk/google-index-checker:latest
+            samjuk/google-index-checker:${{ github.ref_name }}
+          registry: docker.io
+          registry_username: ${{ secrets.DOCKER_USERNAME }}
+          registry_password: ${{ secrets.DOCKER_PASSWORD }}
 
 
 

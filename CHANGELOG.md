@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.0.4] - 2025-06-14
+### :bug: Bug Fixes
+- [`2c56c7c`](https://github.com/SamJUK/google-index-checker/commit/2c56c7c7eed33b40d820257e355fa25fbef40910) - build multiarch docker images *(commit by [@SamJUK](https://github.com/SamJUK))*
+
+
 ## [0.0.3] - 2025-06-14
 ### :bug: Bug Fixes
 - [`6cfa0d6`](https://github.com/SamJUK/google-index-checker/commit/6cfa0d67aeb8d4e36d5fe3cc2f9de05549b21445) - build multiarch docker images *(commit by [@SamJUK](https://github.com/SamJUK))*
@@ -23,3 +28,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [0.0.2]: https://github.com/SamJUK/google-index-checker/compare/0.0.1...0.0.2
 [0.0.3]: https://github.com/SamJUK/google-index-checker/compare/0.0.2...0.0.3
+[0.0.4]: https://github.com/SamJUK/google-index-checker/compare/0.0.3...0.0.4

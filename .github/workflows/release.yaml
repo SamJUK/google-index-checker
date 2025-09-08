@@ -24,7 +24,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           sparse-checkout-cone-mode: false
@@ -32,7 +32,7 @@ jobs:
             .github/actions
             Dockerfile
 
-      - uses: dawidd6/action-download-artifact@v10
+      - uses: dawidd6/action-download-artifact@v11
         with:
           name: google-index-checker-linux-amd64
           path: bin
@@ -64,14 +64,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             CHANGELOG.md
 
-      - uses: dawidd6/action-download-artifact@v10
+      - uses: dawidd6/action-download-artifact@v11
         with:
           path: bin
           workflow: ci.yaml
@@ -88,7 +88,7 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: softprops/action-gh-release@v2.3.2
+        uses: softprops/action-gh-release@v2.3.3
         with:
           name: Release v${{ github.ref_name }}
           generate_release_notes: true

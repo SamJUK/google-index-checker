@@ -16,7 +16,7 @@ jobs:
         with:
           go-version: stable
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v8
+        uses: golangci/golangci-lint-action@v9
         with:
           version: v2.1
 
@@ -58,7 +58,7 @@ jobs:
         run: CGO_ENABLED=0 GOOS=$OS GOARCH=$ARCH go build -o bin/google-index-checker -v src/main.go
       - name: Upload Binary
         id: upload-binary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: google-index-checker-${{ env.OS }}-${{ env.ARCH }}
           path: bin/google-index-checker

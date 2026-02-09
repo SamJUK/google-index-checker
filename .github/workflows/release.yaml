@@ -32,7 +32,7 @@ jobs:
             .github/actions
             Dockerfile
 
-      - uses: dawidd6/action-download-artifact@v11
+      - uses: dawidd6/action-download-artifact@v14
         with:
           name: google-index-checker-linux-amd64
           path: bin
@@ -71,7 +71,7 @@ jobs:
           sparse-checkout: |
             CHANGELOG.md
 
-      - uses: dawidd6/action-download-artifact@v11
+      - uses: dawidd6/action-download-artifact@v14
         with:
           path: bin
           workflow: ci.yaml
